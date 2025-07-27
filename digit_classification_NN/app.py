@@ -5,7 +5,7 @@ from PIL import Image
 from tensorflow import keras
 
 # Loading model
-model = keras.models.load_model("mnist_model.h5")
+model = keras.models.load_model("mnist_model.keras")
 
 st.title("Handwritten Digit Classifier")
 st.write("Upload a 28x28 (or similar) image of a digit (0-9).")
@@ -14,7 +14,7 @@ uploaded_file = st.file_uploader("Choose a digit image", type=["png", "jpg", "jp
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("RGB")
-    st.image(image, caption="Uploaded Image", use_column_width=True)
+    st.image(image, caption="Uploaded Image", use_container_width=True)
 
     # Convert to grayscale and resize
     image = np.array(image)
