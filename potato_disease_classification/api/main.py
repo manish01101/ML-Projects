@@ -4,9 +4,16 @@ from io import BytesIO
 import tensorflow as tf
 from PIL import Image
 import uvicorn
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # frontend URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # Load model
 MODEL = tf.keras.models.load_model("../1.keras")
 CLASS_NAMES = ["Early Blight", "Late Blight", "Healthy"]
