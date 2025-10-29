@@ -1,1 +1,5 @@
 *.csv
+.env
+dataset/
+Augmented_Images
+dataset_for_generator

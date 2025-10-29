@@ -15,12 +15,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 # Load model
-MODEL = tf.keras.models.load_model("../1.keras")
+MODEL = tf.keras.models.load_model("./model.keras")
 CLASS_NAMES = ["Early Blight", "Late Blight", "Healthy"]
 
-@app.get("/hi")
-async def ping():
-    return {"message": "hi manish"}
+@app.get("/")
+async def root():
+    return {"message": "FastAPI is running on Hugging Face!"}
 
 def read_file_as_image(data) -> np.ndarray:
     image = np.array(Image.open(BytesIO(data)))
@@ -42,5 +42,5 @@ async def predict(file: UploadFile = File(...)):
         "confidence": float(confidence)
     }
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="localhost", port=8000)
+# if __name__ == "__main__":
+#     uvicorn.run(app, host="localhost", port=8000)
